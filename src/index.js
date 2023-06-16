@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { Client, IntentsBitField, WebhookClient } = require('discord.js'); 
+let spoofMode = true;
 
 const client = new Client({
     intents: [
@@ -21,9 +22,9 @@ client.on('ready', (c) => {
 client.on('messageCreate', (message) => {
    
 
-    if (!message.webhookId && !message.author.bot) {
+    if (!message.webhookId && !message.author.bot && spoofMode) {
     let orgMessage = message; message.delete();
-    
+
     webhookClient.send({
         content: `${orgMessage.content}`,
         username: `${orgMessage.author.username}`,
@@ -31,5 +32,19 @@ client.on('messageCreate', (message) => {
     }); 
     };
 });
+
+client.on('interactionCreate', (interaction) => {
+    if (!interaction.isChatInputCommand) return;
+
+    if (interaction.commandName === 'enable') {
+        spoofMode = true;
+        interaction.reply('Message spoofing has been enabled.')
+    };
+
+    if (interaction.commandName === 'disable') {
+        spoofMode = false;
+        interaction.reply('Message spoofing has been disabled.')
+    }
+})
 
 client.login(process.env.TOKEN);
