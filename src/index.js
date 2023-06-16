@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Client, IntentsBitField, WebhookClient } = require('discord.js'); 
-let spoofMode = true;
+let spoofMode = false;
 
 const client = new Client({
     intents: [
