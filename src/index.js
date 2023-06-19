@@ -45,6 +45,10 @@ client.on('interactionCreate', (interaction) => {
         spoofMode = false;
         interaction.reply('Message spoofing has been disabled.')
     }
+
+    if (interaction.commandName === 'ping') {
+        interaction.reply('Pong')
+    }
 })
 
 client.login(process.env.TOKEN);

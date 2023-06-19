@@ -9,6 +9,10 @@ const commands = [
     {
         name: 'disable',
         description: 'Disables message spoofing.',
+    },
+    {
+        name: 'ping',
+        description: 'Get a response.',
     }, 
 ];
 
