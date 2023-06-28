@@ -36,12 +36,12 @@ client.on('messageCreate', (message) => {
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand) return;
 
-    if (interaction.commandName === 'enable') {
+    if (interaction.commandName === 'on') {
         spoofMode = true;
         interaction.reply('Message spoofing has been enabled.')
     };
 
-    if (interaction.commandName === 'disable') {
+    if (interaction.commandName === 'off') {
         spoofMode = false;
         interaction.reply('Message spoofing has been disabled.')
     }
